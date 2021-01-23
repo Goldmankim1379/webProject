@@ -28,5 +28,14 @@ public class BoardController {
 		
 		return "/board/list";
 	}
+	
+	
+	@RequestMapping(value = "/board/create", method = RequestMethod.GET)
+	public String create(@ModelAttribute("searchVO") boardVO searchVO, Model model) {
+		
+		
+		return "/board/create";
+	}
+	
 
 }

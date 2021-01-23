@@ -43,10 +43,10 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                <a href="/board/create" class="btn btn-primary" >등록</a>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
                 
