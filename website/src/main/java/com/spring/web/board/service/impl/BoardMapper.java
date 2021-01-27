@@ -9,5 +9,7 @@ import com.spring.web.vo.boardVO;
 @Mapper
 public interface BoardMapper {
 
-	public List<boardVO>getList(boardVO searchVO); 
+	public List<boardVO>getList(boardVO searchVO);
+
+	public void insertBoard(boardVO searchVO); 
 }

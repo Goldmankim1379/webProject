@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.web.board.service.BoardService;
 import com.spring.web.vo.boardVO;
@@ -35,6 +36,16 @@ public class BoardController {
 		
 		
 		return "/board/create";
+	}
+	
+	@RequestMapping(value = "/board/create", method = RequestMethod.POST)
+	public String create_action(@ModelAttribute("searchVO") boardVO searchVO, RedirectAttributes redirect) {
+				
+		boardService.insertBoard(searchVO);
+		
+		redirect.addFlashAttribute("redirect", searchVO.getBoard_idx());
+		
+		return "redirect:/board/list";
 	}
 	
 

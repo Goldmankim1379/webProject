@@ -17,4 +17,9 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<boardVO> getList(boardVO searchVO) {
 		 return mapper.getList(searchVO); 
+	}
+
+	@Override
+	public void insertBoard(boardVO searchVO) {
+		mapper.insertBoard(searchVO);
 	}}

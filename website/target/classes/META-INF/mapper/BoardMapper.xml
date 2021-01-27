@@ -12,4 +12,20 @@
 		]]>
 	</select>
 
+	<insert id="insertBoard">
+		insert into tbl_board
+		(
+		board_title
+		,board_content
+		,board_writer
+		)
+		values
+		(
+		#{board_title}
+		,#{board_content}
+		,#{board_writer}
+		)
+		
+	</insert>
+
 </mapper>
