@@ -16,7 +16,7 @@
 	<div id="contAreaBox">
 		<div class="panel">
 			<div class="panel-body">
-				<form role="from" action="/board/create_action" method="post">
+				<form role="form" action="/board/create_action" method="post">
 				<div class="table-responsive" style="text-align:center;">
 					<table id="datatable-scroller"
 						class="table table-bordered tbl_Form">
@@ -28,30 +28,30 @@
 						<tbody>
 							<tr>
 								<th class="active" >작성자</th>
-								<td class="form-inline"><input type="text" id="faq_title"
-									name="faq_title" class="form-control" style="width: 200px" />
+								<td class="form-inline"><input type="text" id="board_writer"
+									name="board_writer" class="form-control" style="width: 200px" />
 								</td>
 							</tr>
 							<tr>
 								<th class="active">제목</th>
-								<td class="form-inline"><input type="text" id="faq_title"
-									name="faq_title" class="form-control" style="width: 840px" />
+								<td class="form-inline"><input type="text" id="board_title"
+									name="board_title" class="form-control" style="width: 840px" />
 								</td>
 							</tr>
 							<tr>
 								<th class="active" >내용</th>
 								<td class="form-inline"><textarea 
-										id="faq_question" name="faq_question" cols="100" rows="10"
+										id="board_content" name="board_content" cols="100" rows="10"
 										class="form-control"></textarea></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				</form>
 				<div style="margin-left:1px;">
 					<button type="submit" class="btn btn-primary">등록</button>
 					<a href="/board/list" class="btn btn-danger">취소</a>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,7 @@
 package com.spring.web.board;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,16 @@ public class BoardController {
 		return "/board/create";
 	}
 	
-	@RequestMapping(value = "/board/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/board/create_action", method = RequestMethod.POST)
 	public String create_action(@ModelAttribute("searchVO") boardVO searchVO, RedirectAttributes redirect) {
+		
+		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
 				
+		Date time = new Date();
+				
+		String time1 = format1.format(time);
+		searchVO.setBoard_regdate(time1);
+		
 		boardService.insertBoard(searchVO);
 		
 		redirect.addFlashAttribute("redirect", searchVO.getBoard_idx());

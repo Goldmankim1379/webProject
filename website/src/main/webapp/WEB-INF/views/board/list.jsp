@@ -20,25 +20,21 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <c:forEach var="list" items="${boardList}">
                                     	<tr>
                                     		<td><c:out value="${list.board_idx}" /></td>
                                     		<td><c:out value="${list.board_title}" /></td>
-                                    		<td><c:out value="${list.board_content}" /></td>
                                     		<td><c:out value="${list.board_writer}" /></td>
                                     		<td><c:out value="${list.board_regdate}" /></td>
-                                    		<td><c:out value="${list.board_updatedate}" /></td>
                                     	</tr>
                                     </c:forEach>
                                     </tbody>

@@ -18,14 +18,15 @@
 		board_title
 		,board_content
 		,board_writer
+		,board_regdate
 		)
 		values
 		(
 		#{board_title}
 		,#{board_content}
 		,#{board_writer}
+		,#{board_regdate}
 		)
-		
 	</insert>
 
 </mapper>
