@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<<script type="text/javascript">
+
+<script>
 
 function _onSubmit(){
 
-	if(!confirm("등록하시겠습니까?")){
+	if(!confirm("수정하시겠습니까?")){
 		return false;
 	}
 }
@@ -16,12 +16,11 @@ function _onSubmit(){
 
 
 
-
 <%@include file="../includes/header.jsp"%>
 
 <div class="row" style="margin-bottom:20px; margin-left:1px;">
 	<div class="col-lg-12">
-		<h1 class="page-header">등록 페이지</h1>
+		<h1 class="page-header">수정 페이지</h1>
 	</div>
 </div>
 
@@ -29,7 +28,8 @@ function _onSubmit(){
 	<div id="contAreaBox">
 		<div class="panel">
 			<div class="panel-body">
-				<form role="form" action="/board/create_action" method="post" onsubmit="return _onSubmit();">
+				<form role="form" action="/board/update_action" method="post" onsubmit="return _onSubmit();" >
+				<input type="hidden" id="board_idx" name="board_idx" value="${boardContents.board_idx }"/>
 				<div class="table-responsive" style="text-align:center;">
 					<table id="datatable-scroller"
 						class="table table-bordered tbl_Form">
@@ -39,30 +39,30 @@ function _onSubmit(){
 							<col />
 						</colgroup>
 						<tbody>
-							<tr>
-								<th class="active" >작성자</th>
-								<td class="form-inline"><input type="text" id="board_writer"
-									name="board_writer" class="form-control" style="width: 200px" />
-								</td>
-							</tr>
 							<tr> 
 								<th class="active">제목</th>
 								<td class="form-inline"><input type="text" id="board_title"
-									name="board_title" class="form-control" style="width: 840px" />
+									name="board_title" class="form-control" style="width: 840px" value="${boardContents.board_title }"/>
+								</td>
+							</tr>
+							<tr>
+								<th class="active" >작성자</th>
+								<td class="form-inline"><input type="text" id="board_writer"
+									name="board_writer" class="form-control" style="width: 200px" value="${boardContents.board_writer }"/>
 								</td>
 							</tr>
 							<tr>
 								<th class="active" >내용</th>
 								<td class="form-inline"><textarea 
 										id="board_content" name="board_content" cols="100" rows="10"
-										class="form-control"></textarea></td>
+										class="form-control">${boardContents.board_content }</textarea></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div style="margin-left:1px;">
-					<button type="submit" class="btn btn-primary">등록</button>
-					<a href="/board/list" class="btn btn-danger">취소</a>
+					<button type="submit" class="btn btn-success">수정</button>
+					<a href="/board/read?board_idx=${boardContents.board_idx}" class="btn btn-danger">취소</a>
 				</div>
 				</form>
 			</div>

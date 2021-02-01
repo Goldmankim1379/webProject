@@ -10,4 +10,10 @@ public interface BoardService {
 
 	void insertBoard(boardVO searchVO);
 
+	boardVO getBoardContents(int board_idx);
+
+	void updateBoard(boardVO searchVO);
+
+	void getBoardDelete(int board_idx);
+
 }

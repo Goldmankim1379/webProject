@@ -22,4 +22,19 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void insertBoard(boardVO searchVO) {
 		mapper.insertBoard(searchVO);
+	}
+
+	@Override
+	public boardVO getBoardContents(int board_idx) {
+		return mapper.getBoardContents(board_idx);
+	}
+
+	@Override
+	public void updateBoard(boardVO searchVO) {
+		mapper.updateBoard(searchVO);
+	}
+
+	@Override
+	public void getBoardDelete(int board_idx) {
+		mapper.getBoardDelete(board_idx);
 	}}

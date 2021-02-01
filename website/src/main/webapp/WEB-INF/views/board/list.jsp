@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	var msg = "${msg}";
+	
+	if(msg != ""){
+		alert(msg);	
+	}
+	
+});
+
+</script>
+
 
 				<%@include file="../includes/header.jsp" %>
 
@@ -32,7 +47,11 @@
                                     <c:forEach var="list" items="${boardList}">
                                     	<tr>
                                     		<td><c:out value="${list.board_idx}" /></td>
-                                    		<td><c:out value="${list.board_title}" /></td>
+                                    		<td>
+                                    		<a href="/board/read?board_idx=${list.board_idx}" >
+                                    		<c:out value="${list.board_title}" />
+                                    		</a>
+                                    		</td>
                                     		<td><c:out value="${list.board_writer}" /></td>
                                     		<td><c:out value="${list.board_regdate}" /></td>
                                     	</tr>

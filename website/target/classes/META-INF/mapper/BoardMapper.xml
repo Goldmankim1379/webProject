@@ -28,5 +28,33 @@
 		,#{board_regdate}
 		)
 	</insert>
+	
+	<select id="getBoardContents" parameterType="java.lang.Integer" resultType="com.spring.web.vo.boardVO">
+		select
+			*
+		from
+			tbl_board
+		where
+			board_idx =#{board_idx}
+	</select>
+	
+	<update id="updateBoard" parameterType="com.spring.web.vo.boardVO" >
+		UPDATE tbl_board SET 
+		board_title=#{board_title},
+		board_content=#{board_content},
+		board_writer=#{board_writer},
+		board_updatedate=now()
+		WHERE board_idx=#{board_idx}
+	</update>
+	
+	<delete id="getBoardDelete" parameterType="java.lang.Integer" >
+    <![CDATA[
+        delete 
+        	from 
+        tbl_board
+        where
+        board_idx =#{board_idx}            
+    ]]>    
+	</delete>    
 
 </mapper>
