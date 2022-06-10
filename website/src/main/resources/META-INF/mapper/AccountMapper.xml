@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.web.account.service.impl.AccountMapper" >
+
+	<select id="getIdCnt" parameterType="com.spring.web.vo.memberVO" resultType="java.lang.Integer">
+	<![CDATA[
+		select
+			count(*)
+		from
+			tbl_member
+		where
+			me_id = #{me_id}
+	]]>	
+	</select>
+	
+	<insert id="insertMember">
+		insert into tbl_member
+		(
+		me_name
+		,me_id
+		,me_pwd
+		,me_auth
+		,me_email
+		,me_tel
+		,me_latest_login
+		,me_delete_yn
+		,me_id_yn
+		,me_regdate
+		)
+		values
+		(
+		#{me_name}
+		,#{me_id}
+		,#{me_pwd}
+		,#{me_auth}
+		,#{me_email}
+		,#{me_tel}
+		,#{me_latest_login}
+		,#{me_delete_yn}
+		,#{me_id_yn}
+		,#{me_regdate}
+		)
+	</insert>
+	
+	<select id="actionLogin" parameterType="com.spring.web.vo.memberVO" resultType="com.spring.web.vo.memberVO">
+	<![CDATA[
+		select
+			*
+		from
+			tbl_member
+		where
+			me_id = #{me_id}
+		and
+			me_pwd = #{me_pwd}
+	]]>	
+	</select>
+	
+	<update id="updateLastLogin" parameterType="com.spring.web.vo.memberVO" >
+		UPDATE 
+			tbl_member 
+		SET 
+			me_latest_login = sysdate()
+		WHERE 
+			me_id=#{me_id}
+	</update>
+
+</mapper>

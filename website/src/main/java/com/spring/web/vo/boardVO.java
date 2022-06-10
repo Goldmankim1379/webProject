@@ -1,17 +1,32 @@
 package com.spring.web.vo;
- 
-public class boardVO {
-    
-    private int board_idx;
+
+import java.io.UnsupportedEncodingException;
+
+public class boardVO extends PageVO {
+	
+	private int board_idx;
     private String board_title;
     private String board_content;
     private String board_writer;
     private String board_regdate;
     private String board_updatedate;
     
+    private String qustr;
     
     
-    public int getBoard_idx() {
+    public void setQustr() throws UnsupportedEncodingException {
+		
+    	String qs = "";
+    	this.setQueryString();
+    	qs += this.getQueryString();
+    	this.qustr = qs;
+	}
+    
+    
+    public String getQustr() {
+		return qustr;
+	}
+	public int getBoard_idx() {
         return board_idx;
     }
     public void setBoard_idx(int board_idx) {
@@ -47,7 +62,5 @@ public class boardVO {
     public void setBoard_updatedate(String board_updatedate) {
         this.board_updatedate = board_updatedate;
     }
-    
-    
     
 }

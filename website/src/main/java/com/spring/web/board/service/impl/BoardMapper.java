@@ -17,5 +17,7 @@ public interface BoardMapper {
 
 	public void updateBoard(boardVO searchVO);
 
-	public void getBoardDelete(int board_idx); 
+	public void getBoardDelete(int board_idx);
+
+	public int getListCnt(boardVO searchVO); 
 }

@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <%@ page session="false" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
 
+$(document).ready(function() {
+	
+	var msg = "${msg}";
+	
+	if(msg != ""){
+		alert(msg);	
+	}
+	
+});
+</script>
 
 <%@include file="/WEB-INF/views/includes/header.jsp" %>
-
  <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -305,7 +316,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="">
+                                            src="/resources/img/undraw_posting_photo.svg" alt="">
                                     </div>
                                     <p>Add some quality, svg illustrations to your project courtesy of <a
                                             target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
@@ -335,10 +346,6 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-            
             <%@include file="/WEB-INF/views/includes/footer.jsp" %>
             
             <!-- Page level plugins -->

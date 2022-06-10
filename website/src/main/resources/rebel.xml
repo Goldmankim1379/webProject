@@ -9,8 +9,6 @@
 	<classpath>
 		<dir name="C:/Users/KBS_PC/git/webProject/website/target/classes">
 		</dir>
-		<dir name="C:/Users/KBS_PC/git/webProject/website/target/test-classes">
-		</dir>
 	</classpath>
 
 	<web>

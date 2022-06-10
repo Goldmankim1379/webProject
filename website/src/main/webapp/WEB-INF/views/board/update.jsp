@@ -6,7 +6,6 @@
 <script>
 
 function _onSubmit(){
-
 	if(!confirm("수정하시겠습니까?")){
 		return false;
 	}
@@ -30,6 +29,8 @@ function _onSubmit(){
 			<div class="panel-body">
 				<form role="form" action="/board/update_action" method="post" onsubmit="return _onSubmit();" >
 				<input type="hidden" id="board_idx" name="board_idx" value="${boardContents.board_idx }"/>
+				<input type="hidden" id="qustr" name="qustr" value="${searchVO.qustr}"/>
+				
 				<div class="table-responsive" style="text-align:center;">
 					<table id="datatable-scroller"
 						class="table table-bordered tbl_Form">
@@ -62,7 +63,7 @@ function _onSubmit(){
 				</div>
 				<div style="margin-left:1px;">
 					<button type="submit" class="btn btn-success">수정</button>
-					<a href="/board/read?board_idx=${boardContents.board_idx}" class="btn btn-danger">취소</a>
+					<a href="/board/read?board_idx=${boardContents.board_idx}&${searchVO.qustr}" class="btn btn-danger">취소</a>
 				</div>
 				</form>
 			</div>

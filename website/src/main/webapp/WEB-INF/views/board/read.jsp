@@ -22,7 +22,7 @@ function deleteConfirm(){
 	if(!confirm("삭제 하시겠습니까?")){
 		return false;
 	}else{
-		location.href="${path}/board/delete.do?board_idx=${boardContents.board_idx}";
+		location.href="${path}/board/delete.do?board_idx=${boardContents.board_idx}&${searchVO.qustr}";
 	}
 }
 
@@ -75,8 +75,8 @@ function deleteConfirm(){
 					</table>
 				</div>
 				<div style="margin-left:1px;">
-					<a href="/board/list" class="btn btn-primary">목록</a>
-					<a href="/board/update?board_idx=${boardContents.board_idx}" class="btn btn-success">수정</a>
+					<a href="/board/list?&${searchVO.qustr}" class="btn btn-primary">목록</a>
+					<a href="/board/update?board_idx=${boardContents.board_idx}&${searchVO.qustr}" class="btn btn-success">수정</a>
 					<a href="javascript:void(0);" class="btn btn-danger" onclick="deleteConfirm();">삭제</a>
 				</div>
 			</div>

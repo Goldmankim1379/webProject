@@ -3,6 +3,20 @@
 
 <mapper namespace="com.spring.web.board.service.impl.BoardMapper" >
 
+	<sql id="boardtWhere" >
+		where 
+			1=1
+		<if test="searchKeyword != null and searchKeyword != ''">
+			<![CDATA[ 
+			 AND 
+				( 
+				board_title like concat('%',#{searchKeyword},'%') OR
+			    board_content like concat('%',#{searchKeyword},'%') 
+				 )  
+			 ]]> 
+		</if>
+	</sql>
+
 	<select id="getList" parameterType="com.spring.web.vo.boardVO" resultType="com.spring.web.vo.boardVO">
 		<![CDATA[
 			select
@@ -10,6 +24,19 @@
 			from
 				tbl_board
 		]]>
+		<include refid="boardtWhere"/>
+		<![CDATA[			
+			Order by board_idx desc
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+		]]>	
+	</select>
+	
+	<select id="getListCnt" parameterType="com.spring.web.vo.boardVO" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			tbl_board
+		<include refid="boardtWhere"/>	
 	</select>
 
 	<insert id="insertBoard">

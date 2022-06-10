@@ -16,4 +16,6 @@ public interface BoardService {
 
 	void getBoardDelete(int board_idx);
 
+	int getListCnt(boardVO searchVO);
+
 }

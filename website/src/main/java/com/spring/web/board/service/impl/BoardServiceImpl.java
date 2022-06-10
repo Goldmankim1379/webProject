@@ -37,4 +37,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void getBoardDelete(int board_idx) {
 		mapper.getBoardDelete(board_idx);
-	}}
+	}
+
+	@Override
+	public int getListCnt(boardVO searchVO) {
+		return mapper.getListCnt(searchVO);
+	}
+	
+}

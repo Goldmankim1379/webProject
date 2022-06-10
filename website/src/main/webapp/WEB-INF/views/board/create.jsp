@@ -6,6 +6,24 @@
 <<script type="text/javascript">
 
 function _onSubmit(){
+	
+	 if($("#board_writer").val() == ""){
+	    	alert("작성자를 입력해주세요");
+			$("#board_writer").focus();
+			return false;
+	    }
+	
+	 if($("#board_title").val() == ""){
+	    	alert("제목을 입력해주세요");
+			$("#board_title").focus();
+			return false;
+	    }
+	
+	 if($("#board_content").val() == ""){
+	    	alert("내용을 입력해주세요");
+			$("#board_content").focus();
+			return false;
+	    }
 
 	if(!confirm("등록하시겠습니까?")){
 		return false;
