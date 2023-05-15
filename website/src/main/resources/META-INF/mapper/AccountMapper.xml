@@ -13,6 +13,86 @@
 			me_id = #{me_id}
 	]]>	
 	</select>
+
+	<select id="memberInfoSearch" parameterType="com.spring.web.vo.memberVO" resultType="com.spring.web.vo.memberVO">
+	<![CDATA[
+		select
+			*
+		from
+			tbl_member
+		where
+			me_id = #{me_id}
+	]]>	
+	</select>
+
+	<select id="memberIdSearch" parameterType="com.spring.web.vo.memberVO" resultType="com.spring.web.vo.memberVO">
+	<![CDATA[
+		select
+			*
+		from
+			tbl_member
+		where
+			me_name = #{me_name}
+		and
+			me_tel = #{me_tel}
+	]]>	
+	</select>
+
+	<select id="memberPwdCheck" parameterType="com.spring.web.vo.memberVO" resultType="java.lang.Integer">
+	<![CDATA[
+		select
+			count(*)
+		from
+			tbl_member
+		where
+			me_name = #{me_name}
+		and
+			me_tel = #{me_tel}
+		and
+			me_id = #{me_id}
+	]]>	
+	</select>
+	
+		
+	<update id="passwordUpdate" parameterType="com.spring.web.vo.memberVO" >
+		UPDATE 
+			tbl_member 
+		SET 
+			me_pwd = #{me_pwd}
+		where
+			me_name = #{me_name}
+		and
+			me_tel = #{me_tel}
+		and
+			me_id = #{me_id}
+	</update>
+		
+		
+	<update id="memberPasswordUpdate" parameterType="com.spring.web.vo.memberVO" >
+		UPDATE 
+			tbl_member 
+		SET 
+			me_name = #{me_name}
+			,me_id = #{me_id}
+			,me_pwd = #{me_pwd}
+			,me_email = #{me_email}
+			,me_tel = #{me_tel}
+		where
+			me_id = #{me_id}
+	</update>
+		
+		
+	<update id="memberUpdate" parameterType="com.spring.web.vo.memberVO" >
+		UPDATE 
+			tbl_member 
+		SET 
+			me_name = #{me_name}
+			,me_id = #{me_id}
+			,me_email = #{me_email}
+			,me_tel = #{me_tel}
+		where
+			me_id = #{me_id}
+	</update>
 	
 	<insert id="insertMember">
 		insert into tbl_member
@@ -55,6 +135,7 @@
 			me_pwd = #{me_pwd}
 	]]>	
 	</select>
+
 	
 	<update id="updateLastLogin" parameterType="com.spring.web.vo.memberVO" >
 		UPDATE 

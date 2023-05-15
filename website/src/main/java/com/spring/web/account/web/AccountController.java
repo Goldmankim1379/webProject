@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -157,7 +159,7 @@ public class AccountController {
 			
 			if(loginInfo == null){
 				redirectAttributes.addFlashAttribute("msg", "로그인을 실폐하였습니다.");
-				return "redirect:/account/login.do";
+				return "redirect:/account/login";
 			}
 			
 			Cookie rememberCookie = new Cookie("CustomCheck", loginInfo.getMe_id());
@@ -210,6 +212,126 @@ public class AccountController {
 
 			return new String(Base64.encodeBase64(hashValue));
 		}
+		
+		
+		
+		@RequestMapping(value = "/account/search_id", method = RequestMethod.GET)
+		public String search_id(HttpServletRequest request, Model model,
+				memberVO searchVO) {
+			
+			
+			return "/account/search_id";
+		}
+		
+		@RequestMapping(value = "/account/search_result_id")
+		public String search_result_id(HttpServletRequest request, Model model,
+				@RequestParam(required = true, value = "me_name") String me_name, 
+				@RequestParam(required = true, value = "me_tel") String me_tel,
+				memberVO searchVO) {
+			
+			
+			try {
+				
+				searchVO.setMe_name(me_name);
+				searchVO.setMe_tel(me_tel);
+				memberVO memberSearch = accountService.memberIdSearch(searchVO);
+				
+				model.addAttribute("searchVO", memberSearch);
+
+			} catch (Exception e) {
+				System.out.println(e.toString());
+				model.addAttribute("msg", "오류가 발생되었습니다.");
+			}
+			
+			return "/account/search_result_id";
+		}
+		
+		
+		@RequestMapping(value = "/account/search_pwd", method = RequestMethod.GET)
+		public String search_pwd(HttpServletRequest request, Model model,
+				memberVO searchVO) {
+			
+			
+			return "/account/search_pwd";
+		}
+		
+		@RequestMapping(value = "/account/search_result_pwd", method = RequestMethod.POST)
+		public String search_result_pwd(HttpServletRequest request, Model model,
+				@RequestParam(required = true, value = "me_name") String me_name, 
+				@RequestParam(required = true, value = "me_tel") String me_tel, 
+				@RequestParam(required = true, value = "me_id") String me_id, 
+				memberVO searchVO) {
+			
+			try {
+				
+				searchVO.setMe_name(me_name);
+				searchVO.setMe_tel(me_tel);
+				searchVO.setMe_id(me_id);
+				int memberSearch = accountService.memberPwdCheck(searchVO);
+				
+				if(memberSearch == 0) {
+					model.addAttribute("msg", "기입된 정보가 잘못되었습니다. 다시 입력해주세요.");
+					return "/account/search_pwd";
+				}
+				
+				String newPwd = RandomStringUtils.randomAlphanumeric(10);
+				String enpassword = encryptPassword(newPwd);
+				searchVO.setMe_pwd(enpassword);
+				
+				accountService.passwordUpdate(searchVO);
+				
+				model.addAttribute("newPwd", newPwd);
+
+			} catch (Exception e) {
+				System.out.println(e.toString());
+				model.addAttribute("msg", "오류가 발생되었습니다.");
+			}
+			
+			
+			return "/account/search_result_pwd";
+		}
+		
+		
+		
+		@RequestMapping(value = "/account/profile")
+		public String profile(HttpServletRequest request, Model model,HttpSession session,
+				memberVO searchVO) {
+			
+			try {
+				
+				LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+				
+				searchVO.setMe_id(loginVO.getId());
+				memberVO memberSearch = accountService.memberInfoSearch(searchVO);
+				
+				model.addAttribute("searchVO", memberSearch);
+
+			} catch (Exception e) {
+				System.out.println(e.toString());
+				model.addAttribute("msg", "오류가 발생되었습니다.");
+			}
+			
+			return "/account/profile";
+		}
+		
+		
+		@RequestMapping(value = "/account/profile_action", method = RequestMethod.POST)
+		public String profile_action(HttpServletRequest request, RedirectAttributes redirectAttributes,Model model,HttpSession session,
+				memberVO searchVO) {
+			
+			try {
+				accountService.memberUpdate(searchVO);
+				redirectAttributes.addFlashAttribute("msg", "수정하였습니다.");
+				
+			} catch (Exception e) {
+				System.out.println(e.toString());
+				redirectAttributes.addFlashAttribute("msg", "오류가 발생되었습니다.");
+			}
+			
+			return "redirect:/account/profile";
+		}
+		
+		
 		
 	
 

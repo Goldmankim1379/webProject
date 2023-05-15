@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.web.schedule.service.impl.ScheduleMapper" >
+
+	<sql id="scheduletWhere" >
+		where 
+			1=1
+		sc_del_yn = 'N'
+		
+		<if test="sc_sdate != null and sc_edate != null">
+			<![CDATA[ AND (
+				(#{sc_sdate} >= sc_sdate and #{sc_sdate} < sc_edate) OR 
+				(#{sc_edate} > sc_sdate and #{sc_edate} <= sc_edate) OR
+				(sc_sdate > #{sc_sdate} and sc_sdate < #{sc_edate}) OR
+				(sc_edate > #{sc_sdate} and sc_edate < #{sc_edate})
+			) ]]> 
+		</if>
+		
+	</sql>
+
+	<select id="getMainScheduleList" parameterType="com.spring.web.vo.scheduleVO" resultType="com.spring.web.vo.scheduleVO">
+		<![CDATA[
+			select
+				*
+			from
+				tbl_schedule
+		]]>
+		<include refid="boardtWhere"/>
+		<![CDATA[			
+			Order by board_idx asc
+		]]>	
+	</select>
+	
+	<!-- <select id="getListCnt" parameterType="com.spring.web.vo.scheduleVO" resultType="java.lang.Integer">
+		select
+			count(*)
+		from
+			tbl_board
+		<include refid="boardtWhere"/>	
+	</select>
+
+	<insert id="insertBoard">
+		insert into tbl_board
+		(
+		board_title
+		,board_content
+		,board_writer
+		,board_regdate
+		)
+		values
+		(
+		#{board_title}
+		,#{board_content}
+		,#{board_writer}
+		,#{board_regdate}
+		)
+	</insert>
+	
+	<select id="getBoardContents" parameterType="java.lang.Integer" resultType="com.spring.web.vo.scheduleVO">
+		select
+			*
+		from
+			tbl_board
+		where
+			board_idx =#{board_idx}
+	</select>
+	
+	<update id="updateBoard" parameterType="com.spring.web.vo.scheduleVO" >
+		UPDATE tbl_board SET 
+		board_title=#{board_title},
+		board_content=#{board_content},
+		board_writer=#{board_writer},
+		board_updatedate=now()
+		WHERE board_idx=#{board_idx}
+	</update>
+	
+	<delete id="getBoardDelete" parameterType="java.lang.Integer" >
+    <![CDATA[
+        delete 
+        	from 
+        tbl_board
+        where
+        board_idx =#{board_idx}            
+    ]]>    
+	</delete>     -->
+
+</mapper>

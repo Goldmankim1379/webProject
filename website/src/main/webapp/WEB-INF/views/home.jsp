@@ -4,15 +4,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
+
 $(document).ready(function() {
 	
 	var msg = "${msg}";
 	
 	if(msg != ""){
 		alert(msg);	
-	}
+	} 
 	
 });
+	
+
 </script>
 
 <%@include file="/WEB-INF/views/includes/header.jsp" %>

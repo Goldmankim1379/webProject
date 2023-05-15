@@ -13,5 +13,15 @@ public interface AccountService {
 
 	void updateLastLogin(memberVO searchVO);
 
+	memberVO memberIdSearch(memberVO searchVO);
+
+	int memberPwdCheck(memberVO searchVO);
+
+	void passwordUpdate(memberVO searchVO);
+
+	void memberUpdate(memberVO searchVO);
+
+	memberVO memberInfoSearch(memberVO searchVO);
+
 
 }

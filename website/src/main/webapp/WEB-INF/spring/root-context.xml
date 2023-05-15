@@ -33,10 +33,12 @@
 		
 		<mybatis-spring:scan base-package="com.spring.web.board.service.impl" />
 		<mybatis-spring:scan base-package="com.spring.web.account.service.impl" />
+		<mybatis-spring:scan base-package="com.spring.web.schedule.service.impl" />
 	    
 	    
 	    <context:component-scan base-package="com.spring.web.board.service.impl" />
 	    <context:component-scan base-package="com.spring.web.account.service.impl" />
+	    <context:component-scan base-package="com.spring.web.schedule.service.impl" />
 	    
 	    <context:component-scan base-package="com.spring.web.vo" />
 	    

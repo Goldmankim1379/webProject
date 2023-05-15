@@ -37,6 +37,7 @@ public class BoardController {
 	    	model.addAttribute("msg",(String) inputFlashMap.get("msg"));
 	    	
 	    }
+	    
 		
 	    //페이징[s]
 	    Pagination pagination = new Pagination();

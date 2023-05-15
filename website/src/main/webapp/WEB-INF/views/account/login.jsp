@@ -73,8 +73,8 @@ function frmCheck() {
 								<a href="#" class="btn btn-primary btn-user btn-block" onclick="return frmCheck();">로그인</a>
 									<hr>
 									<a href="/account/register" class="btn btn-google btn-user btn-block">회원가입</a> 
-									<a href="#" class="btn btn-facebook btn-user btn-block">아이디/비밀번호 찾기</a>
-									<a href="/" class="btn btn-warning btn-user btn-block">홈페이지</a>
+									<a href="/account/search_id" class="btn btn-facebook btn-user btn-block">아이디  찾기</a>
+									<a href="/account/search_pwd" class="btn btn-warning btn-user btn-block">비밀번호찾기 찾기</a>
 								</form>
 								<hr>
 							</div>
